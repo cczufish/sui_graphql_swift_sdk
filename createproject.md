@@ -135,6 +135,7 @@ query address {
 ```
 5. Add generated files to your target
 添加生成的文件到你的项目工程里，就可以愉快的调用了。
+![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/1691701682051_.pic.jpg)
 
 
 
