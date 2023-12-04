@@ -1,4 +1,4 @@
-# 为 App 创建 Xcode 项目sui-graphql-swift
+# 创建 Xcode 项目sui-graphql-swift
 
 启动 Xcode，然后在“Welcome to Xcode”(欢迎使用 Xcode) 窗口中点按“Create a new Xcode project”(新建 Xcode 项目)。
 或选取“File”(文件) >“New”(新建) >“Project”(项目)。在出现的表单中，选择目标操作系统或平台并在“Application”(应用程序)。
