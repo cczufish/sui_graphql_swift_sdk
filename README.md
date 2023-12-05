@@ -1,6 +1,22 @@
 # sui_graphql_swift_sdk
 sui graphql swift sdk 
 
+# Connecting to Sui Network
+```
+import Foundation
+import Apollo
+
+class Network {
+    
+  static let shared = Network()
+
+  private init() {}
+
+  private(set) lazy var apollo = ApolloClient(url: URL(string: "https://graphql-beta.mainnet.sui.io/")!)
+    
+}
+
+```
 
 # Sui GraphQL Examples
 ### [Address](#0)
