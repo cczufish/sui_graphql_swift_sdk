@@ -190,7 +190,7 @@ Success! balance: Optional("126523478")
 ```
 
 ## <a id=1></a>
-## Address
+## Balance Connection
 ### <a id=1></a>
 ### Balance Connection
 ####  Query the balance for objects of type COIN and then for each coin
@@ -243,7 +243,7 @@ Success! balance: Optional("28431")
 ```
 
 ## <a id=01></a>
-## Address
+## Transaction Block Connection
 ### <a id=01></a>
 ### Transaction Block Connection
 ####  See examples in Query::transactionBlockConnection as this is
