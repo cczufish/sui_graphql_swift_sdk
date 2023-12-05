@@ -17,16 +17,10 @@ Then, click Add Package.
 
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG181.jpg)
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG184.jpg)
-
-
-
+![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG185.jpg)
 
 
 [GraphQL RPC Beta](https://docs.sui.io/references/sui-api/beta-graph-ql)
-
-[创建工程并集成Apollo graphql](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/createproject.md)
-
-[Write your first query](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/WriteYourFirstSuiQuery.md)
 
 
 # Connecting to Sui Network
