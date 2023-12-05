@@ -26,7 +26,7 @@ class Network {
 # Sui GraphQL Examples
 ### [Address](#0)
 #### &emsp;&emsp;[Address](#0)
-#### &emsp;&emsp;[Transaction Block Connection](#1)
+#### &emsp;&emsp;[Transaction Block Connection](#01)
 ### [Balance Connection](#1)
 #### &emsp;&emsp;[Balance Connection](#1)
 ### [Chain Id](#2)
@@ -225,6 +225,50 @@ Success! Result: GraphQLResult<Data>(data: Optional(SUIAPI.Balance_connectionQue
 Success! balance: Optional("28431")
 ```
 
+## <a id=01></a>
+## Address
+### <a id=01></a>
+### Transaction Block Connection
+####  See examples in Query::transactionBlockConnection as this is
+####  similar behavior to the `transactionBlockConnection` in Query but
+####  supports additional `AddressTransactionBlockRelationship` filter
+
+```
+query transaction_block_with_relation_filter($address: SuiAddress!) {
+  address(address: $address) {
+    transactionBlockConnection(relation: SENT, filter: { package: "0x2" }) {
+      nodes {
+        sender {
+          location
+        }
+        gasInput {
+          gasPrice
+          gasBudget
+        }
+      }
+    }
+  }
+}
+
+```
+
+```
+Network.shared.apollo.fetch(query: Transaction_block_with_relation_filterQuery(address: "0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9")) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! gasBudget: \(graphQLResult.data?.address?.transactionBlockConnection?.nodes.first?.gasInput?.gasBudget)")
+
+                print("Success! gasInput: \(graphQLResult.data?.address?.transactionBlockConnection?.nodes.first?.gasInput?.gasPrice)")
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+```
+
+```
+Success! gasBudget: Optional("6234480")
+Success! gasInput: Optional("781")
+```
 
 
 
