@@ -137,10 +137,32 @@ query address {
 添加生成的文件到你的项目工程里，就可以愉快的调用了。
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/1691701682051_.pic.jpg)
 
+
+--------------------------------
+
 # Global installation The Apollo CLI
+
 ```
- npm install -g apollo
+npm install -g apollo
+npm install -g graphql
+
 ```
+## Downloading a schema
+
+```
+apollo schema:download --endpoint=https://graphql-beta.mainnet.sui.io/ schema.json
+
+-----------------------------------------------------------------
+DEPRECATED: This command will be removed from the `apollo` CLI in 
+its next major version. Replacement functionality is available in 
+the new Apollo Rover CLI: https://go.apollo.dev/t/migration
+-----------------------------------------------------------------
+
+  ✔ Loading Apollo Project
+  ✔ Saving schema to schema.json
+
+```
+
 
 
 
