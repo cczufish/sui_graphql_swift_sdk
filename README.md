@@ -139,7 +139,30 @@ Network.shared.apollo.fetch(query: AddressQuery(address: "0x5094652429957619e6ef
         }
 ```
 ```
-Success! Result: GraphQLResult<Data>(data: Optional(SUIAPI.AddressQuery.Data(__data: ApolloAPI.DataDict(_storage: ApolloAPI.DataDict._Storage))), errors: nil, extensions: nil, source: Apollo.GraphQLResult<SUIAPI.AddressQuery.Data>.Source.server, dependentKeys: Optional(Set(["QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9)", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).location", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type"])))
+Success! Result: GraphQLResult<Data>(data: Optional(
+SUIAPI.AddressQuery.Data(__data: ApolloAPI.DataDict(_storage: ApolloAPI.DataDict._Storage))), errors: nil, extensions: nil,
+source: Apollo.GraphQLResult<SUIAPI.AddressQuery.Data>.Source.server, dependentKeys: Optional(Set(["QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinObjectCount",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinType.__typename",
+ "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9)",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type.__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type.repr",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).location",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinType",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.coinType.repr",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance.totalBalance",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.__typename",
+"QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type"])))
+
 ```
 
 
