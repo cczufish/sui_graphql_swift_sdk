@@ -7,7 +7,7 @@ Install With Swift Package Manager
 
 use the Xcode project configuration UI to add the sui_graphql_swift_sdk iOS package.
 
-In the dialog that appears, paste the URL of the Apollo iOS GitHub repo (https://github.com/cczufish/sui_graphql_swift_sdk.git) into the search bar, then select the apollo-ios package that appears:
+In the dialog that appears, paste the URL of the sui_graphql_swift_sdk iOS GitHub repo (https://github.com/cczufish/sui_graphql_swift_sdk.git) into the search bar, then select the apollo-ios package that appears:
 
 Select which version you want to use , then click Add Package.
 
