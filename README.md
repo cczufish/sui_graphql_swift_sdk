@@ -1,6 +1,9 @@
 # sui_graphql_swift_sdk
 sui graphql swift sdk 
 
+
+[GraphQL RPC Beta](https://docs.sui.io/references/sui-api/beta-graph-ql)
+
 [创建工程并集成Apollo graphql](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/createproject.md)
 
 [Write your first query](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/WriteYourFirstSuiQuery.md)
