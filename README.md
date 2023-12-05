@@ -133,6 +133,7 @@ Network.shared.apollo.fetch(query: AddressQuery(address: "0x5094652429957619e6ef
             switch result {
             case .success(let graphQLResult):
                 print("Success! Result: \(graphQLResult)")
+                print("Success! balance: \(graphQLResult.data?.address?.balance?.totalBalance)")
             case .failure(let error):
                 print("Failure! Error: \\(error)")
             }
@@ -163,6 +164,7 @@ source: Apollo.GraphQLResult<SUIAPI.AddressQuery.Data>.Source.server, dependentK
 "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.__typename",
 "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).coinConnection.nodes.0.asMoveObject.contents.type"])))
 
+Success! balance: Optional("126523478")
 ```
 
 
