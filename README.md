@@ -28,7 +28,7 @@ class Network {
 #### &emsp;&emsp;[Address](#0)
 #### &emsp;&emsp;[Transaction Block Connection](#1)
 ### [Balance Connection](#1)
-#### &emsp;&emsp;[Balance Connection](#65535)
+#### &emsp;&emsp;[Balance Connection](#1)
 ### [Chain Id](#2)
 #### &emsp;&emsp;[Chain Id](#131070)
 ### [Checkpoint](#3)
@@ -172,6 +172,58 @@ source: Apollo.GraphQLResult<SUIAPI.AddressQuery.Data>.Source.server, dependentK
 Success! balance: Optional("126523478")
 ```
 
+## <a id=1></a>
+## Address
+### <a id=1></a>
+### Balance Connection
+####  Query the balance for objects of type COIN and then for each coin
+####  get the coin type, the number of objects, and the total balance
+
+```
+query balance_connection($address: SuiAddress!,$type:String){
+  address(
+    address: $address
+  ) {
+    balance(
+      type: $type
+    ) {
+      coinObjectCount
+      totalBalance
+    }
+    balanceConnection {
+      nodes {
+        coinType {
+          repr
+        }
+        coinObjectCount
+        totalBalance
+      }
+      pageInfo {
+        endCursor
+      }
+    }
+  }
+}
+
+```
+
+```
+Network.shared.apollo.fetch(query: Balance_connectionQuery(address: "0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9",type:"0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN")) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! Result: \(graphQLResult)")
+                print("Success! balance: \(graphQLResult.data?.address?.balance?.totalBalance)")
+
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+```
+
+```
+Success! Result: GraphQLResult<Data>(data: Optional(SUIAPI.Balance_connectionQuery.Data(__data: ApolloAPI.DataDict(_storage: ApolloAPI.DataDict._Storage))), errors: nil, extensions: nil, source: Apollo.GraphQLResult<SUIAPI.Balance_connectionQuery.Data>.Source.server, dependentKeys: Optional(Set(["QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.4.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.6.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.7.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance(type:0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN).totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.6.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance(type:0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN).__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.3.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9)", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.5.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.7.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.2.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.7.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.5.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.4.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.2.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.3.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.7.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.5.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.pageInfo.endCursor", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance(type:0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN).coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.pageInfo.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.1.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.1.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balance(type:0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN)", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.3.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.7.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.2.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.3.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.0.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.3.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.4.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.5.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.0.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.0.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.1.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.6.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.4.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.pageInfo", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.1.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.4.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.1.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.4.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.1.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.5.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.0.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.5.coinType", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.2.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.2.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.6.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.0.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.6.coinObjectCount", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.6.totalBalance", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.0.coinType.repr", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.2.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.7.coinType.__typename", "QUERY_ROOT.address(address:0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9).balanceConnection.nodes.3.coinType.__typename"])))
+Success! balance: Optional("28431")
+```
 
 
 
