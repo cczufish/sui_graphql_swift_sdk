@@ -1,10 +1,49 @@
 # 创建 Xcode 项目sui-graphql-swift
 
+# installation GraphQL in your iOS app With SPM
+[Unleashing the power of GraphQL in your iOS app](https://vincenzopascarella.medium.com/unleashing-the-power-of-graphql-in-your-ios-app-67e0f768cb14)
+## Global installation The Apollo CLI
+
+```
+npm install -g apollo
+npm install -g graphql
+
+```
+## Downloading a schema
+
+```
+apollo schema:download --endpoint=https://graphql-beta.mainnet.sui.io/ schema.json
+
+-----------------------------------------------------------------
+DEPRECATED: This command will be removed from the `apollo` CLI in 
+its next major version. Replacement functionality is available in 
+the new Apollo Rover CLI: https://go.apollo.dev/t/migration
+-----------------------------------------------------------------
+
+  ✔ Loading Apollo Project
+  ✔ Saving schema to schema.json
+
+```
+
+![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG177.jpg)
+![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG178.jpg)
+
+
+
+
+# installation GraphQL in your iOS app With Cocoapods
+
+[Using GraphQL in iOS with the ApolloClient and CocoaPods](https://medium.com/@knightbenax/using-graphql-in-ios-with-the-apolloclient-and-cocoapods-56f7e7e9305f)
+
+
+
+## 为项目集成Apollo GraphQL
+
 启动 Xcode，然后在“Welcome to Xcode”(欢迎使用 Xcode) 窗口中点按“Create a new Xcode project”(新建 Xcode 项目)。
 或选取“File”(文件) >“New”(新建) >“Project”(项目)。在出现的表单中，选择目标操作系统或平台并在“Application”(应用程序)。
 下选择一个模板。在接下来的表单中，填写表单并选取各个选项来配置你的项目。  
 
-# 为项目集成Apollo GraphQL
+## 为项目集成Apollo GraphQL
 
 1. Add Apollo to your Podfile
 
@@ -27,7 +66,7 @@ end
 2. Run pod install
 
 
-# Codegen Configuration
+## Codegen Configuration
 
 [Apollo官方文档](https://www.apollographql.com/docs/ios/get-started/)
 
@@ -138,30 +177,6 @@ query address {
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/1691701682051_.pic.jpg)
 
 
---------------------------------
-
-# Global installation The Apollo CLI
-
-```
-npm install -g apollo
-npm install -g graphql
-
-```
-## Downloading a schema
-
-```
-apollo schema:download --endpoint=https://graphql-beta.mainnet.sui.io/ schema.json
-
------------------------------------------------------------------
-DEPRECATED: This command will be removed from the `apollo` CLI in 
-its next major version. Replacement functionality is available in 
-the new Apollo Rover CLI: https://go.apollo.dev/t/migration
------------------------------------------------------------------
-
-  ✔ Loading Apollo Project
-  ✔ Saving schema to schema.json
-
-```
 
 
 
