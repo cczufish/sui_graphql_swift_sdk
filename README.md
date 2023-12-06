@@ -151,6 +151,9 @@ query address($address: SuiAddress!) {
 ```
 
 ```
+import Apollo
+import SUIAPI
+
 Network.shared.apollo.fetch(query: AddressQuery(address: "0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9")) { result in
             switch result {
             case .success(let graphQLResult):
@@ -225,6 +228,9 @@ query balance_connection($address: SuiAddress!,$type:String){
 ```
 
 ```
+import Apollo
+import SUIAPI
+
 Network.shared.apollo.fetch(query: Balance_connectionQuery(address: "0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9",type:"0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN")) { result in
             switch result {
             case .success(let graphQLResult):
@@ -251,6 +257,7 @@ Success! balance: Optional("28431")
 ####  supports additional `AddressTransactionBlockRelationship` filter
 
 ```
+
 query transaction_block_with_relation_filter($address: SuiAddress!) {
   address(address: $address) {
     transactionBlockConnection(relation: SENT, filter: { package: "0x2" }) {
@@ -270,6 +277,9 @@ query transaction_block_with_relation_filter($address: SuiAddress!) {
 ```
 
 ```
+import Apollo
+import SUIAPI
+
 Network.shared.apollo.fetch(query: Transaction_block_with_relation_filterQuery(address: "0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9")) { result in
             switch result {
             case .success(let graphQLResult):
