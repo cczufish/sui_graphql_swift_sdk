@@ -298,6 +298,37 @@ Success! gasInput: Optional("781")
 ```
 
 
+## <a id=2></a>
+## Chain Id
+### <a id=131070></a>
+### Chain Id
+####  Returns the chain identifier for the chain that the server is tracking
 
+```
+import Apollo
+import SUIAPI
+        Network.shared.apollo.fetch(query: ChainIdentifierQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! chainIdentifier: \(graphQLResult.data?.chainIdentifier)")
+
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+```
+query chainIdentifier{
+  chainIdentifier
+}
+
+```
+
+
+```
+Success! chainIdentifier: Optional("35834a8a")
+```
 
 
