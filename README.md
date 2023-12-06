@@ -19,6 +19,64 @@ Then, click Add Package.
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG184.jpg)
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG185.jpg)
 
+Sources Tree
+
+├── Operations
+│   └── Queries
+│       ├── AddressQuery.graphql.swift
+│       ├── Balance_connectionQuery.graphql.swift
+│       ├── ChainIdentifierQuery.graphql.swift
+│       ├── CheckpointLatestQuery.graphql.swift
+│       ├── CheckpointQuery.graphql.swift
+│       ├── CheckpointWithMultipleSelectionQuery.graphql.swift
+│       ├── CheckpointWithSequenceNumberAndFirstTwoQuery.graphql.swift
+│       ├── CheckpointWithSequenceNumberQuery.graphql.swift
+│       └── Transaction_block_with_relation_filterQuery.graphql.swift
+└── Schema
+    ├── CustomScalars
+    │   ├── Base64.swift
+    │   ├── BigInt.swift
+    │   ├── DateTime.swift
+    │   └── SuiAddress.swift
+    ├── Interfaces
+    │   └── ObjectOwner.graphql.swift
+    ├── Objects
+    │   ├── Address.graphql.swift
+    │   ├── AuthenticatorStateUpdate.graphql.swift
+    │   ├── Balance.graphql.swift
+    │   ├── BalanceConnection.graphql.swift
+    │   ├── ChangeEpochTransaction.graphql.swift
+    │   ├── Checkpoint.graphql.swift
+    │   ├── Coin.graphql.swift
+    │   ├── CoinConnection.graphql.swift
+    │   ├── CommitteeMember.graphql.swift
+    │   ├── ConsensusCommitPrologueTransaction.graphql.swift
+    │   ├── EndOfEpochData.graphql.swift
+    │   ├── EndOfEpochTransaction.graphql.swift
+    │   ├── Epoch.graphql.swift
+    │   ├── GasCostSummary.graphql.swift
+    │   ├── GasInput.graphql.swift
+    │   ├── GenesisTransaction.graphql.swift
+    │   ├── MoveObject.graphql.swift
+    │   ├── MoveType.graphql.swift
+    │   ├── MoveValue.graphql.swift
+    │   ├── Object.graphql.swift
+    │   ├── Owner.graphql.swift
+    │   ├── PageInfo.graphql.swift
+    │   ├── ProgrammableTransaction.graphql.swift
+    │   ├── Query.graphql.swift
+    │   ├── RandomnessStateUpdate.graphql.swift
+    │   ├── TransactionBlock.graphql.swift
+    │   ├── TransactionBlockConnection.graphql.swift
+    │   └── TransactionBlockEdge.graphql.swift
+    ├── SchemaConfiguration.swift
+    ├── SchemaMetadata.graphql.swift
+    └── Unions
+        └── TransactionBlockKind.graphql.swift
+
+8 directories, 45 files
+
+
 
 [GraphQL RPC Beta](https://docs.sui.io/references/sui-api/beta-graph-ql)
 
