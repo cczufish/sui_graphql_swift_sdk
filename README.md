@@ -581,6 +581,258 @@ Success! transactionBlockConnection endCursor: Optional("10")
 ```
 
 
+### <a id=196608></a>
+### Latest Checkpoint
+####  Latest checkpoint's data
+
+```
+# Latest checkpoint's data
+query checkpointLatest{
+  checkpoint {
+    digest
+    sequenceNumber
+    validatorSignature
+    previousCheckpointDigest
+    networkTotalTransactions
+    rollingGasSummary {
+      computationCost
+      storageCost
+      storageRebate
+      nonRefundableStorageFee
+    }
+    epoch {
+      epochId
+      referenceGasPrice
+      startTimestamp
+      endTimestamp
+    }
+    endOfEpoch {
+      nextProtocolVersion
+    }
+  }
+}
+
+
+```
+
+        
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointLatestQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! digest edges: \(graphQLResult.data?.checkpoint?.digest)")
+                print("Success! storageCost : \(graphQLResult.data?.checkpoint?.rollingGasSummary?.storageCost)")
+                print("Success! startTimestamp : \(graphQLResult.data?.checkpoint?.epoch?.startTimestamp)")
+
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+```
+Success! digest edges: Optional("8GonuNB363QrdTNMCx1u7mM73tVgnv7QiheSczktnN1R")
+Success! storageCost : Optional("5819143619200")
+Success! startTimestamp : Optional("2023-11-21T17:16:04.628Z")
+
+```
+
+
+### <a id=196609></a>
+### Multiple Selections
+####  Latest checkpoint's data
+
+```
+# Get the checkpoint at sequence 9769 and show
+# the new committe authority and stake units
+query checkpointWithMultipleSelection($sequenceNumber:Int!){
+  checkpoint(id: { sequenceNumber: $sequenceNumber }) {
+    digest
+    sequenceNumber
+    timestamp
+    validatorSignature
+    previousCheckpointDigest
+    liveObjectSetDigest
+    networkTotalTransactions
+    rollingGasSummary {
+      computationCost
+      storageCost
+      storageRebate
+      nonRefundableStorageFee
+    }
+    epoch {
+      epochId
+    }
+    endOfEpoch {
+      newCommittee {
+        authorityName
+        stakeUnit
+      }
+      nextProtocolVersion
+    }
+    transactionBlockConnection {
+      edges {
+        node {
+          digest
+          expiration {
+            epochId
+          }
+        }
+      }
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointWithMultipleSelectionQuery(sequenceNumber: 9769)) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! digest edges: \(graphQLResult.data?.checkpoint?.digest)")
+                print("Success! storageCost : \(graphQLResult.data?.checkpoint?.rollingGasSummary?.storageCost)")
+                print("Success! epochId : \(graphQLResult.data?.checkpoint?.epoch?.epochId)")
+
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+        
+```
+
+```
+
+Success! digest edges: Optional("6ekm4MjL6dvkxCEwionkCLD9rXwMLK9ezBj8mZAXf17Y")
+Success! storageCost : Optional("0")
+Success! epochId : Optional(0)
+
+```
+
+
+
+### <a id=196610></a>
+### With Timestamp Tx Block Live Objects
+####  Latest checkpoint's timestamp, liveObjectSetDigest, and transaction block data
+
+```
+# Latest checkpoint's timestamp, liveObjectSetDigest, and transaction block data
+query checkpointWithtimestamp{
+  checkpoint {
+    digest
+    sequenceNumber
+    timestamp
+    liveObjectSetDigest
+    transactionBlockConnection {
+      edges {
+        node {
+          digest
+          
+          expiration {
+            epochId
+          }
+        }
+      }
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointWithtimestampQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! digest : \(graphQLResult.data?.checkpoint?.digest)")
+                print("Success! sequenceNumber : \(graphQLResult.data?.checkpoint?.sequenceNumber)")
+                print("Success! timestamp : \(graphQLResult.data?.checkpoint?.timestamp)")
+
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+```
+
+```
+
+Success! digest : Optional("8GonuNB363QrdTNMCx1u7mM73tVgnv7QiheSczktnN1R")
+Success! sequenceNumber : Optional(18888268)
+Success! timestamp : Optional("2023-11-21T22:03:27.667Z")
+
+```
+
+
+
+### <a id=196611></a>
+### With Tx Sent Addr Filter
+####  Select checkpoint at sequence number 14830285 for transactions from sentAddress
+
+```
+# Select checkpoint at sequence number 14830285 for transactions from sentAddress
+query checkpointWithTxSent($sequenceNumber:Int!){
+  checkpoint(id: { sequenceNumber: $sequenceNumber }) {
+    digest
+    sequenceNumber
+    timestamp
+    liveObjectSetDigest
+    transactionBlockConnection(
+      filter: {
+        sentAddress: "0x0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ) {
+      edges {
+        node {
+          digest
+         
+          expiration {
+            epochId
+          }
+        }
+      }
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointWithTxSentQuery(sequenceNumber: 14830285)) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print("Success! digest : \(graphQLResult.data?.checkpoint?.digest)")
+                print("Success! sequenceNumber : \(graphQLResult.data?.checkpoint?.sequenceNumber)")
+                print("Success! timestamp : \(graphQLResult.data?.checkpoint?.timestamp)")
+
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+
+
+
+
+
+
+
 
 
 

@@ -36,10 +36,10 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "Coin": return SUIAPI.Objects.Coin
     case "MoveObject": return SUIAPI.Objects.MoveObject
     case "MoveValue": return SUIAPI.Objects.MoveValue
-    case "CommitteeMember": return SUIAPI.Objects.CommitteeMember
     case "TransactionBlockConnection": return SUIAPI.Objects.TransactionBlockConnection
     case "TransactionBlockEdge": return SUIAPI.Objects.TransactionBlockEdge
     case "TransactionBlock": return SUIAPI.Objects.TransactionBlock
+    case "CommitteeMember": return SUIAPI.Objects.CommitteeMember
     case "BalanceConnection": return SUIAPI.Objects.BalanceConnection
     case "PageInfo": return SUIAPI.Objects.PageInfo
     case "ConsensusCommitPrologueTransaction": return SUIAPI.Objects.ConsensusCommitPrologueTransaction
