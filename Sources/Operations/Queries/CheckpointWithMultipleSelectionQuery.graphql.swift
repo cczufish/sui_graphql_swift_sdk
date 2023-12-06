@@ -1,0 +1,234 @@
+// @generated
+// This file was automatically generated and should not be edited.
+
+@_exported import ApolloAPI
+
+public class CheckpointWithMultipleSelectionQuery: GraphQLQuery {
+  public static let operationName: String = "checkpointWithMultipleSelection"
+  public static let operationDocument: ApolloAPI.OperationDocument = .init(
+    definition: .init(
+      #"query checkpointWithMultipleSelection($sequenceNumber: Int!) { checkpoint(id: { sequenceNumber: $sequenceNumber }) { __typename digest sequenceNumber timestamp validatorSignature previousCheckpointDigest liveObjectSetDigest networkTotalTransactions rollingGasSummary { __typename computationCost storageCost storageRebate nonRefundableStorageFee } epoch { __typename epochId } endOfEpoch { __typename newCommittee { __typename authorityName stakeUnit } nextProtocolVersion } transactionBlockConnection { __typename edges { __typename node { __typename digest expiration { __typename epochId } } } } } }"#
+    ))
+
+  public var sequenceNumber: Int
+
+  public init(sequenceNumber: Int) {
+    self.sequenceNumber = sequenceNumber
+  }
+
+  public var __variables: Variables? { ["sequenceNumber": sequenceNumber] }
+
+  public struct Data: SUIAPI.SelectionSet {
+    public let __data: DataDict
+    public init(_dataDict: DataDict) { __data = _dataDict }
+
+    public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.Query }
+    public static var __selections: [ApolloAPI.Selection] { [
+      .field("checkpoint", Checkpoint?.self, arguments: ["id": ["sequenceNumber": .variable("sequenceNumber")]]),
+    ] }
+
+    public var checkpoint: Checkpoint? { __data["checkpoint"] }
+
+    /// Checkpoint
+    ///
+    /// Parent Type: `Checkpoint`
+    public struct Checkpoint: SUIAPI.SelectionSet {
+      public let __data: DataDict
+      public init(_dataDict: DataDict) { __data = _dataDict }
+
+      public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.Checkpoint }
+      public static var __selections: [ApolloAPI.Selection] { [
+        .field("__typename", String.self),
+        .field("digest", String.self),
+        .field("sequenceNumber", Int.self),
+        .field("timestamp", SUIAPI.DateTime?.self),
+        .field("validatorSignature", SUIAPI.Base64?.self),
+        .field("previousCheckpointDigest", String?.self),
+        .field("liveObjectSetDigest", String?.self),
+        .field("networkTotalTransactions", Int?.self),
+        .field("rollingGasSummary", RollingGasSummary?.self),
+        .field("epoch", Epoch?.self),
+        .field("endOfEpoch", EndOfEpoch?.self),
+        .field("transactionBlockConnection", TransactionBlockConnection?.self),
+      ] }
+
+      /// A 32-byte hash that uniquely identifies the checkpoint contents, encoded in Base58.
+      /// This hash can be used to verify checkpoint contents by checking signatures against the committee,
+      /// Hashing contents to match digest, and checking that the previous checkpoint digest matches.
+      public var digest: String { __data["digest"] }
+      /// This checkpoint's position in the total order of finalised checkpoints, agreed upon by consensus.
+      public var sequenceNumber: Int { __data["sequenceNumber"] }
+      /// The timestamp at which the checkpoint is agreed to have happened according to consensus.
+      /// Transactions that access time in this checkpoint will observe this timestamp.
+      public var timestamp: SUIAPI.DateTime? { __data["timestamp"] }
+      /// This is an aggregation of signatures from a quorum of validators for the checkpoint proposal.
+      public var validatorSignature: SUIAPI.Base64? { __data["validatorSignature"] }
+      /// The digest of the checkpoint at the previous sequence number.
+      public var previousCheckpointDigest: String? { __data["previousCheckpointDigest"] }
+      /// This is a commitment by the committee at the end of epoch
+      /// on the contents of the live object set at that time.
+      /// This can be used to verify state snapshots.
+      public var liveObjectSetDigest: String? { __data["liveObjectSetDigest"] }
+      /// Tracks the total number of transaction blocks in the network at the time of the checkpoint.
+      public var networkTotalTransactions: Int? { __data["networkTotalTransactions"] }
+      /// The computation and storage cost, storage rebate, and nonrefundable storage fee accumulated
+      /// during this epoch, up to and including this checkpoint.
+      /// These values increase monotonically across checkpoints in the same epoch.
+      public var rollingGasSummary: RollingGasSummary? { __data["rollingGasSummary"] }
+      public var epoch: Epoch? { __data["epoch"] }
+      /// End of epoch data is only available on the final checkpoint of an epoch.
+      /// This field provides information on the new committee and protocol version for the next epoch.
+      public var endOfEpoch: EndOfEpoch? { __data["endOfEpoch"] }
+      public var transactionBlockConnection: TransactionBlockConnection? { __data["transactionBlockConnection"] }
+
+      /// Checkpoint.RollingGasSummary
+      ///
+      /// Parent Type: `GasCostSummary`
+      public struct RollingGasSummary: SUIAPI.SelectionSet {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.GasCostSummary }
+        public static var __selections: [ApolloAPI.Selection] { [
+          .field("__typename", String.self),
+          .field("computationCost", SUIAPI.BigInt?.self),
+          .field("storageCost", SUIAPI.BigInt?.self),
+          .field("storageRebate", SUIAPI.BigInt?.self),
+          .field("nonRefundableStorageFee", SUIAPI.BigInt?.self),
+        ] }
+
+        public var computationCost: SUIAPI.BigInt? { __data["computationCost"] }
+        public var storageCost: SUIAPI.BigInt? { __data["storageCost"] }
+        public var storageRebate: SUIAPI.BigInt? { __data["storageRebate"] }
+        public var nonRefundableStorageFee: SUIAPI.BigInt? { __data["nonRefundableStorageFee"] }
+      }
+
+      /// Checkpoint.Epoch
+      ///
+      /// Parent Type: `Epoch`
+      public struct Epoch: SUIAPI.SelectionSet {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.Epoch }
+        public static var __selections: [ApolloAPI.Selection] { [
+          .field("__typename", String.self),
+          .field("epochId", Int.self),
+        ] }
+
+        /// The epoch's id as a sequence number that starts at 0 and it is incremented by one at every epoch change
+        public var epochId: Int { __data["epochId"] }
+      }
+
+      /// Checkpoint.EndOfEpoch
+      ///
+      /// Parent Type: `EndOfEpochData`
+      public struct EndOfEpoch: SUIAPI.SelectionSet {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.EndOfEpochData }
+        public static var __selections: [ApolloAPI.Selection] { [
+          .field("__typename", String.self),
+          .field("newCommittee", [NewCommittee]?.self),
+          .field("nextProtocolVersion", Int?.self),
+        ] }
+
+        public var newCommittee: [NewCommittee]? { __data["newCommittee"] }
+        public var nextProtocolVersion: Int? { __data["nextProtocolVersion"] }
+
+        /// Checkpoint.EndOfEpoch.NewCommittee
+        ///
+        /// Parent Type: `CommitteeMember`
+        public struct NewCommittee: SUIAPI.SelectionSet {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.CommitteeMember }
+          public static var __selections: [ApolloAPI.Selection] { [
+            .field("__typename", String.self),
+            .field("authorityName", String?.self),
+            .field("stakeUnit", Int?.self),
+          ] }
+
+          public var authorityName: String? { __data["authorityName"] }
+          public var stakeUnit: Int? { __data["stakeUnit"] }
+        }
+      }
+
+      /// Checkpoint.TransactionBlockConnection
+      ///
+      /// Parent Type: `TransactionBlockConnection`
+      public struct TransactionBlockConnection: SUIAPI.SelectionSet {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.TransactionBlockConnection }
+        public static var __selections: [ApolloAPI.Selection] { [
+          .field("__typename", String.self),
+          .field("edges", [Edge].self),
+        ] }
+
+        /// A list of edges.
+        public var edges: [Edge] { __data["edges"] }
+
+        /// Checkpoint.TransactionBlockConnection.Edge
+        ///
+        /// Parent Type: `TransactionBlockEdge`
+        public struct Edge: SUIAPI.SelectionSet {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.TransactionBlockEdge }
+          public static var __selections: [ApolloAPI.Selection] { [
+            .field("__typename", String.self),
+            .field("node", Node.self),
+          ] }
+
+          /// The item at the end of the edge
+          public var node: Node { __data["node"] }
+
+          /// Checkpoint.TransactionBlockConnection.Edge.Node
+          ///
+          /// Parent Type: `TransactionBlock`
+          public struct Node: SUIAPI.SelectionSet {
+            public let __data: DataDict
+            public init(_dataDict: DataDict) { __data = _dataDict }
+
+            public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.TransactionBlock }
+            public static var __selections: [ApolloAPI.Selection] { [
+              .field("__typename", String.self),
+              .field("digest", String.self),
+              .field("expiration", Expiration?.self),
+            ] }
+
+            /// A 32-byte hash that uniquely identifies the transaction block contents, encoded in Base58.
+            /// This serves as a unique id for the block on chain
+            public var digest: String { __data["digest"] }
+            /// This field is set by senders of a transaction block
+            /// It is an epoch reference that sets a deadline after which validators will no longer consider the transaction valid
+            /// By default, there is no deadline for when a transaction must execute
+            public var expiration: Expiration? { __data["expiration"] }
+
+            /// Checkpoint.TransactionBlockConnection.Edge.Node.Expiration
+            ///
+            /// Parent Type: `Epoch`
+            public struct Expiration: SUIAPI.SelectionSet {
+              public let __data: DataDict
+              public init(_dataDict: DataDict) { __data = _dataDict }
+
+              public static var __parentType: ApolloAPI.ParentType { SUIAPI.Objects.Epoch }
+              public static var __selections: [ApolloAPI.Selection] { [
+                .field("__typename", String.self),
+                .field("epochId", Int.self),
+              ] }
+
+              /// The epoch's id as a sequence number that starts at 0 and it is incremented by one at every epoch change
+              public var epochId: Int { __data["epochId"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}
