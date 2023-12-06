@@ -20,6 +20,7 @@ Then, click Add Package.
 ![示例图片](https://github.com/cczufish/sui_graphql_swift_sdk/blob/main/images/WechatIMG185.jpg)
 
 Sources Tree
+```
 
 ├── Operations
 │   └── Queries
@@ -76,6 +77,7 @@ Sources Tree
 
 8 directories, 45 files
 
+```
 
 
 [GraphQL RPC Beta](https://docs.sui.io/references/sui-api/beta-graph-ql)
