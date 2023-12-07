@@ -828,8 +828,169 @@ import SUIAPI
 
 
 
+## <a id=4></a>
+## Checkpoint Connection
+### <a id=262140></a>
+### Ascending Fetch
+####  Use the checkpoint connection to fetch some default amount of checkpoints in an ascending order
+
+```
+# Use the checkpoint connection to fetch some default amount of checkpoints in an ascending order
+query checkpointConnection{
+  checkpointConnection {
+    nodes {
+      digest
+      sequenceNumber
+      validatorSignature
+      previousCheckpointDigest
+      networkTotalTransactions
+      rollingGasSummary {
+        computationCost
+        storageCost
+        storageRebate
+        nonRefundableStorageFee
+      }
+      epoch {
+        epochId
+        referenceGasPrice
+        startTimestamp
+        endTimestamp
+      }
+      endOfEpoch {
+        nextProtocolVersion
+      }
+    }
+  }
+}
 
 
+```
+
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointConnectionQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+                if let first = graphQLResult.data?.checkpointConnection?.nodes.first {
+                    print("Success! sequenceNumber : \(first.sequenceNumber)")
+                    print("Success! digest : \(first.digest)")
+                    print("Success! validatorSignature : \(first.validatorSignature)")
+                    print("Success! epochId : \(first.epoch?.epochId)")
+                    
+                }
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+        
+```
+
+```
+Success! sequenceNumber : 0
+Success! digest : 4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S
+Success! validatorSignature : Optional("lYFOHS0B6GmvGmIYJg5qdf/SxVpczAMu04cmyih3A24JOKyvWNz4L+r/mNJBMVsE")
+Success! epochId : Optional(0)
+
+```
+
+
+### <a id=262141></a>
+### first_ten_after_checkpoint
+####  Fetch the digest and sequence number of the first 10 checkpoints after the cursor
+
+```
+# Fetch the digest and sequence number of the first 10 checkpoints after the cursor, which in this example is set to be checkpoint 11. Note that cursor will be opaque
+query checkpointConnectionFirst($first:Int,$after:String){
+  checkpointConnection(first: $first, after: $after) {
+    nodes {
+      sequenceNumber
+      digest
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointConnectionFirstQuery(first: 10, after: "11")) { result in
+            switch result {
+            case .success(let graphQLResult):
+                if let first = graphQLResult.data?.checkpointConnection?.nodes.first {
+                    print("Success! sequenceNumber : \(first.sequenceNumber)")
+                    print("Success! digest : \(first.digest)")
+                }
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+```
+Success! sequenceNumber : 12
+Success! digest : 4LynNaMzeVxzhCVpR2YG6DUqiSd8e8J9HZpaxtLAvaZa
+
+```
+
+
+
+### <a id=262142></a>
+### Last Ten After Checkpoint
+####  Fetch the digest and the sequence number of the last 20 checkpoints before the cursor
+
+```
+# Fetch the digest and the sequence number of the last 20 checkpoints before the cursor
+query checkpointConnectionLast($last:Int,$before:String){
+  checkpointConnection(last: $last, before: $before) {
+    nodes {
+      sequenceNumber
+      digest
+    }
+  }
+}
+ 
+
+
+
+```
+
+
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CheckpointConnectionLastQuery(last: 20, before: "1000")) { result in
+            switch result {
+            case .success(let graphQLResult):
+                if let last = graphQLResult.data?.checkpointConnection?.nodes.first {
+                    print("Success! sequenceNumber : \(last.sequenceNumber)")
+                    print("Success! digest : \(last.digest)")
+                }
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+
+
+```
+
+
+```
+
+Success! sequenceNumber : 999
+Success! digest : 41nPNZWHvvajmBQjX3GbppsgGZDEB6DhN4UxPkjSYRRj
+
+
+```
 
 
 
