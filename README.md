@@ -993,6 +993,74 @@ Success! digest : 41nPNZWHvvajmBQjX3GbppsgGZDEB6DhN4UxPkjSYRRj
 ```
 
 
+## <a id=5></a>
+## Coin Connection
+### <a id=327675></a>
+### Coin Connection
+####  Get last 3 coins before coins at cursor 13034947 "0x13034947"
+
+```
+# Get last 3 coins before coins at cursor 13034947 "0x13034947"
+query coinConnection($address: SuiAddress!,$last:Int,$before:String){
+  address(
+    address: $address
+  ) {
+    coinConnection(last: $last, before: $before) {
+      nodes {
+        balance
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
+
+```
+
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CoinConnectionQuery(address: "0x5094652429957619e6efa79a404a6714d1126e63f551f4b6c7fb76440f8118c9",last: 3, before: "0x13034947")) { result in
+            switch result {
+            case .success(let graphQLResult):
+                if let balance = graphQLResult.data?.address?.coinConnection?.nodes.first?.balance {
+                    print("Success! balance : \(balance)")
+                }
+                
+                if let endCursor = graphQLResult.data?.address?.coinConnection?.pageInfo.endCursor {
+                    print("Success! endCursor : \(endCursor)")
+                }
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+        
+```
+
+```
+{
+  "data": {
+    "address": {
+      "coinConnection": {
+        "nodes": [],
+        "pageInfo": {
+          "endCursor": null,
+          "hasNextPage": false
+        }
+      }
+    }
+  }
+}
+
+```
+
+
+
 
 
 
