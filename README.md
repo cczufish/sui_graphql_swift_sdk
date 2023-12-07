@@ -1061,6 +1061,66 @@ import SUIAPI
 
 
 
+## <a id=6></a>
+## CoinMetadata
+### <a id=393210></a>
+### CoinMetadata
+####  Get Coin Metadata
+
+```
+query CoinMetadata {
+  coinMetadata(coinType: "0x2::sui::SUI") {
+    decimals
+    name
+    symbol
+    description
+    iconUrl
+    supply
+    asMoveObject {
+      hasPublicTransfer
+    }
+  }
+}
+
+
+```
+
+
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: CoinMetadataQuery(coinType: "0x2::sui::SUI")) { result in
+            switch result {
+            case .success(let graphQLResult):
+
+                if let coinMetadata = graphQLResult.data?.coinMetadata {
+                    print("Success! name : \(coinMetadata.name)")
+                    print("Success! symbol : \(coinMetadata.symbol)")
+                    print("Success! description : \(coinMetadata.description)")
+                    print("Success! iconUrl : \(coinMetadata.iconUrl)")
+                    print("Success! decimals : \(coinMetadata.decimals)")
+
+                }
+             
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+
+
+```
+Success! name : Optional("Sui")
+Success! symbol : Optional("SUI")
+Success! description : Optional("")
+Success! iconUrl : nil
+Success! decimals : Optional(9)
+
+```
 
 
 

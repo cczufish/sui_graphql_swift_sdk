@@ -51,6 +51,7 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "EndOfEpochTransaction": return SUIAPI.Objects.EndOfEpochTransaction
     case "GasInput": return SUIAPI.Objects.GasInput
     case "CheckpointConnection": return SUIAPI.Objects.CheckpointConnection
+    case "CoinMetadata": return SUIAPI.Objects.CoinMetadata
     default: return nil
     }
   }
