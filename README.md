@@ -1068,8 +1068,8 @@ import SUIAPI
 ####  Get Coin Metadata
 
 ```
-query CoinMetadata {
-  coinMetadata(coinType: "0x2::sui::SUI") {
+query CoinMetadata($coinType:String!) {
+  coinMetadata(coinType: $coinType) {
     decimals
     name
     symbol
@@ -1120,6 +1120,350 @@ Success! description : Optional("")
 Success! iconUrl : nil
 Success! decimals : Optional(9)
 
+```
+
+
+
+
+## <a id=7></a>
+## Epoch
+### <a id=458745></a>
+### Latest Epoch
+####  Latest Epoch
+
+```
+# Latest epoch, since epoch omitted
+query epoch{
+  epoch {
+    protocolConfigs {
+      protocolVersion
+    }
+    epochId
+    referenceGasPrice
+    startTimestamp
+    endTimestamp
+    validatorSet {
+      totalStake
+      pendingActiveValidatorsSize
+      stakePoolMappingsSize
+      inactivePoolsSize
+      validatorCandidatesSize
+      activeValidators {
+        name
+        description
+        imageUrl
+        projectUrl
+        exchangeRates {
+          asObject {
+            storageRebate
+            bcs
+            kind
+          }
+          hasPublicTransfer
+        }
+        exchangeRatesSize
+        stakingPoolActivationEpoch
+        stakingPoolSuiBalance
+        rewardsPool
+        poolTokenBalance
+        pendingStake
+        pendingTotalSuiWithdraw
+        pendingPoolTokenWithdraw
+        votingPower
+        gasPrice
+        commissionRate
+        nextEpochStake
+        nextEpochGasPrice
+        nextEpochCommissionRate
+        atRisk
+      }
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+        Network.shared.apollo.fetch(query: EpochQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+
+                if let epoch = graphQLResult.data?.epoch {
+                    print("Success! epochId : \(epoch.epochId)")
+                    print("Success! startTimestamp : \(epoch.startTimestamp)")
+                    print("Success! referenceGasPrice : \(epoch.referenceGasPrice)")
+                }
+             
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+```
+
+```
+Success! epochId : 223
+Success! startTimestamp : Optional("2023-11-21T17:16:04.628Z")
+Success! referenceGasPrice : Optional("750")
+```
+
+
+
+
+### <a id=458746></a>
+### Specific Epoch
+####  Specific Epoch
+
+```
+# Selecting all fields for epoch 100
+query SpecificEpoch($id:Int){
+  epoch(id: $id) {
+    protocolConfigs {
+      protocolVersion
+    }
+    epochId
+    referenceGasPrice
+    startTimestamp
+    endTimestamp
+    validatorSet {
+      totalStake
+      pendingActiveValidatorsSize
+      stakePoolMappingsSize
+      inactivePoolsSize
+      validatorCandidatesSize
+      activeValidators {
+        name
+        description
+        imageUrl
+        projectUrl
+        exchangeRates {
+          asObject {
+            storageRebate
+            bcs
+            kind
+          }
+          hasPublicTransfer
+        }
+        exchangeRatesSize
+        stakingPoolActivationEpoch
+        stakingPoolSuiBalance
+        rewardsPool
+        poolTokenBalance
+        pendingStake
+        pendingTotalSuiWithdraw
+        pendingPoolTokenWithdraw
+        votingPower
+        gasPrice
+        commissionRate
+        nextEpochStake
+        nextEpochGasPrice
+        nextEpochCommissionRate
+        atRisk
+      }
+    }
+  }
+}
+
+```
+
+```
+import Apollo
+import SUIAPI
+        Network.shared.apollo.fetch(query: SpecificEpochQuery(id: 100)) { result in
+            switch result {
+            case .success(let graphQLResult):
+
+                if let epoch = graphQLResult.data?.epoch {
+                    print("Success! epochId : \(epoch.epochId)")
+                    print("Success! startTimestamp : \(epoch.startTimestamp)")
+                    print("Success! referenceGasPrice : \(epoch.referenceGasPrice)")
+                }
+             
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+```
+Success! epochId : 100
+Success! startTimestamp : Optional("2023-07-21T17:07:02.929Z")
+Success! referenceGasPrice : Optional("800")
+```
+
+
+
+### <a id=458747></a>
+### With Checkpoint Connection
+####  With Checkpoint Connection
+
+```
+query epochWithCheckpointConnection{
+  epoch {
+    checkpointConnection {
+      nodes {
+        transactionBlockConnection(first: 10) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          edges {
+            cursor
+            node {
+             
+            
+              gasInput {
+                gasPrice
+                gasBudget
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: EpochWithCheckpointConnectionQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+
+                if let epoch = graphQLResult.data?.epoch?.checkpointConnection?.nodes.first {
+                    print("Success! endCursor : \(epoch.transactionBlockConnection?.pageInfo.endCursor)")
+                    print("Success! hasNextPage : \(epoch.transactionBlockConnection?.pageInfo.hasNextPage)")
+                    print("Success! cursor : \(epoch.transactionBlockConnection?.edges.first?.cursor)")
+                }
+             
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+```
+
+
+
+### <a id=458748></a>
+### With Tx Block Connection
+####  With Tx Block Connection
+
+```
+# Fetch the first 20 transactions after 231220100 for epoch 97
+query epochWithTxBlockConnection($id:Int){
+  epoch(id:$id) {
+    transactionBlockConnection(first: 20, after:"231220100") {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          digest
+        
+          gasInput {
+            gasPrice
+            gasBudget
+          }
+        }
+      }
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: EpochWithTxBlockConnectionQuery(id: 97)) { result in
+            switch result {
+            case .success(let graphQLResult):
+
+                if let epoch = graphQLResult.data?.epoch {
+                    print("Success! endCursor : \(epoch.transactionBlockConnection?.pageInfo.endCursor)")
+                    print("Success! hasNextPage : \(epoch.transactionBlockConnection?.pageInfo.hasNextPage)")
+                    print("Success! cursor : \(epoch.transactionBlockConnection?.edges.first?.cursor)")
+                }
+             
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+        
+```
+
+```
+Success! endCursor : Optional("231220162")
+Success! hasNextPage : Optional(true)
+Success! cursor : Optional("231220143")
+```
+
+### <a id=458749></a>
+### With Tx Block Connection Latest Epoch
+####  With Tx Block Connection Latest Epoch
+
+```
+# the last checkpoint of epoch 97 is 8097645
+# last tx number of the checkpoint is 261225985
+query epochWithTxBlockConnectionLatest{
+  epoch {
+    transactionBlockConnection(first: 20, after: "261225985") {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+         
+          gasInput {
+            gasPrice
+            gasBudget
+          }
+        }
+      }
+    }
+  }
+}
+
+
+```
+
+```
+import Apollo
+import SUIAPI
+
+        Network.shared.apollo.fetch(query: EpochWithTxBlockConnectionLatestQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+
+                if let epoch = graphQLResult.data?.epoch {
+                    print("Success! endCursor : \(epoch.transactionBlockConnection?.pageInfo.endCursor)")
+                    print("Success! hasNextPage : \(epoch.transactionBlockConnection?.pageInfo.hasNextPage)")
+                    print("Success! cursor : \(epoch.transactionBlockConnection?.edges.first?.cursor)")
+                }
+             
+            case .failure(let error):
+                print("Failure! Error: \\(error)")
+            }
+        }
+```
+
+```
+Success! endCursor : Optional("919756189")
+Success! hasNextPage : Optional(true)
+Success! cursor : Optional("919756170")
 ```
 
 

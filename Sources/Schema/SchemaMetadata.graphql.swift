@@ -50,6 +50,9 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "RandomnessStateUpdate": return SUIAPI.Objects.RandomnessStateUpdate
     case "EndOfEpochTransaction": return SUIAPI.Objects.EndOfEpochTransaction
     case "GasInput": return SUIAPI.Objects.GasInput
+    case "ProtocolConfigs": return SUIAPI.Objects.ProtocolConfigs
+    case "ValidatorSet": return SUIAPI.Objects.ValidatorSet
+    case "Validator": return SUIAPI.Objects.Validator
     case "CheckpointConnection": return SUIAPI.Objects.CheckpointConnection
     case "CoinMetadata": return SUIAPI.Objects.CoinMetadata
     default: return nil
