@@ -82,6 +82,12 @@ Sources Tree
 
 [GraphQL RPC Beta](https://docs.sui.io/references/sui-api/beta-graph-ql)
 
+[Sui GraphQL RPC](https://docs.sui.io/guides/developer/getting-started/graphql-rpc)
+
+mainnet： https://sui-mainnet.mystenlabs.com/graphql
+testnet： https://sui-testnet.mystenlabs.com/graphql
+QA about RPC：  https://github.com/MystenLabs/sui/pull/15333
+
 
 # Connecting to Sui Network
 ```
